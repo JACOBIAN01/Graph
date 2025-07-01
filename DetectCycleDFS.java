@@ -10,8 +10,20 @@ public class DetectCycleDFS {
     }
 
     static boolean dfs(int node,int parent,boolean[] visited , List<List<Integer>>graph){
+        System.out.println("Current Node: "+node);
+        System.out.println("Current Parent: " + parent);
+        visited[node] = true;
 
-        return true;
+        for(int neighbor:graph.get(node)){
+            if(!visited[neighbor]){
+                if(dfs(neighbor,node,visited,graph)){
+                    return true;
+                }else if(neighbor!=parent){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -34,13 +46,18 @@ public class DetectCycleDFS {
         boolean[] visited = new boolean[n];
         boolean hasCycle = false;
 
+        // System.out.println(adjList);
+
         for(int i=0;i<n;i++){
+
             if(!visited[i]){
-                if(dfs(i,-1,visited,adjList){
-                    hasCycle = true;
+                if(dfs(i,-1,visited,adjList)){
+                    hasCycle=true;
                     break;
-                })
+                }
             }
         }
+        System.out.println("Cycle detected: " + hasCycle);
+
     }
 }
