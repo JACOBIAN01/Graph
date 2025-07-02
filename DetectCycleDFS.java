@@ -58,6 +58,5 @@ public class DetectCycleDFS {
             }
         }
         System.out.println("Cycle detected: " + hasCycle);
-
     }
 }
